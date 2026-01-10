@@ -1,7 +1,8 @@
 version : "3.3"
 services :
   web :
-     images: infrawave/nodes-app
+     images: iinfrawave/nodes-app:01
+
      ports :
          - "8000:8000"
      volumes:
