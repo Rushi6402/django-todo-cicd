@@ -57,4 +57,6 @@ docs/_build/
 target/
 
 .DS_Store
-.data/mysql/db
+# Ignore database files
+data/mysql/
+data/mysql/db/
