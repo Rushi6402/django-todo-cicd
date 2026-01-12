@@ -14,7 +14,7 @@ pipeline {
         stage("Code") {
             steps {
                script{
-                 clone('https://github.com/Rushi6402/django-todo-cicd.git', "devlop")
+                 clone('https://github.com/Rushi6402/django-todo-cicd.git', "develop")
                }
             }
         }
