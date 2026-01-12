@@ -1,0 +1,55 @@
+@Library ("shared") _
+pipeline {
+    agent { label "nikes" }
+  
+    stages {
+        stage("hello"){
+            steps{
+            script{
+                 hello()     //file name on the github 
+               }
+            
+            }
+        }
+        stage("Code") {
+            steps {
+               script{
+                 clone('https://github.com/Rushi6402/django-todo-cicd.git', "main")
+               }
+            }
+        }
+        stage("Build") {
+            steps {
+            
+                // sh "docker build -t nodes-app:05 ."
+                 script{ 
+                      docker_build("nodes-app",'01','infrawave')
+                    }
+            }
+        }
+
+        stage("Test") {
+            steps {
+                echo "Testing the code"
+            }
+        }
+
+        stage('Docker Login & Push') {
+            steps {
+               script{
+                   docker_push("nodes-app","01","infrawave")
+               }
+               
+              
+                }
+
+             }
+        stage("Deploy") {
+            steps {
+                echo "Deploying the code"
+                sh "docker compose down"
+                sh "docker compose up -d"
+            }
+        }
+    }
+}
